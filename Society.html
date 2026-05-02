@@ -1,1 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Card */
+    .login-container {
+      background: #fff;
+      width: 90%;
+      max-width: 380px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* Logo + Title */
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 40px;
+    }
+    .logo h2 {
+      color: #d6336c;
+      font-size: 22px;
+    }
+
+    /* Input fields */
+    .input-group {
+      position: relative;
+      margin: 15px 0;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+    .input-group i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      cursor: pointer;
+    }
+
+    /* Button */
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #d6336c;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #b82b5c;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 20px;
+      font-size: 9px;
+      color: #555;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 20px;
+      }
+      .logo h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <!-- Logo + Title -->
+    <div class="logo">
+      <img src="logo-img.png">
+      <h2>Committee Login</h2>
+    </div>
+
+    <!-- Form -->
+    <form onsubmit="return validateLogin(event)">
+      <div class="input-group">
+        <input type="text" id="username" placeholder="Enter Username" required>
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <i class="fa fa-eye" id="togglePassword"></i>
+      </div>
+      <button class="btn" type="submit">Login</button>
+    </form>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <p>ID your first name lowercase & Password same@123</p>
+    </div>
+  </div>
+
+  <script>
+    // Show/Hide Password
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+
+    togglePassword.addEventListener("click", function () {
+      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.setAttribute("type", type);
+
+      // Toggle eye / eye-slash icon
+      this.classList.toggle("fa-eye");
+      this.classList.toggle("fa-eye-slash");
+    });
+
+    // Validate Login
+    function validateLogin(event) {
+      event.preventDefault();
+
+      let username = document.getElementById("username").value.trim().toLowerCase();
+      let password = document.getElementById("password").value.trim();
+
+      // Allowed users and passwords
+      const users = {
+        "laxman": "laxman@123",
+"raj": "raj@123",
+      };
+
+      if (users[username] && users[username] === password) {
+        alert("Login Successful! Welcome " + username.charAt(0).toUpperCase() + username.slice(1));
+        // Redirect after login
+        window.location.href = "index.html"; // change this to your home page
+      } else {
+        alert("Invalid Username or Password!");
+      }
+    }
+  </script>
+
+</body>
+        </html>
 
